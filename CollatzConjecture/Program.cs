@@ -102,23 +102,18 @@ namespace CollatzConjecture
 
                 if(!printFull)
                 {
-                    Console.WriteLine("Press C to continue or F to print every number without the pause.");
+                    Console.WriteLine("Press any key to continue or F to print every number without the pause.");
                     ConsoleKey key = Console.ReadKey().Key;
                     Console.WriteLine("");
-                    if (key == ConsoleKey.C)
+                    if(key == ConsoleKey.F)
                     {
-                        Console.SetCursorPosition(0, Console.CursorTop - 1);
-                        ClearCurrentConsoleLine();
-                        Console.WriteLine("");
-                        continue;
-                    }
-                    else if(key == ConsoleKey.F)
-                    {
-                        Console.SetCursorPosition(0, Console.CursorTop - 1);
-                        ClearCurrentConsoleLine();
-                        Console.WriteLine("");
                         printFull = true;
                     }
+
+                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                    ClearCurrentConsoleLine();
+                    Console.WriteLine("");
+                    continue;
                 }
             }
 
@@ -133,9 +128,22 @@ namespace CollatzConjecture
             }
 
             Console.WriteLine("");
-            int maxKey = valuesIterations.FirstOrDefault(x => x.Value == valuesIterations.Values.Max()).Key;
-            Console.WriteLine($"The number {maxKey} had the biggest value of iterations: {valuesIterations.Values.Max()}");
+            Console.WriteLine("Do you want to calculate which number took the most iterations? (This calculation is really expensive when going through a lot of numbers, expect heavy time consuption)");
+            Console.WriteLine("Press C to continue or S to skip this");
 
+            if(Console.ReadKey().Key == ConsoleKey.C)
+            {
+                Console.WriteLine("");
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                ClearCurrentConsoleLine();
+                Console.WriteLine("");
+                int maxKey = valuesIterations.FirstOrDefault(x => x.Value == valuesIterations.Values.Max()).Key;
+                Console.WriteLine($"The number {maxKey} had the biggest value of iterations: {valuesIterations.Values.Max()}");
+            }
+
+            Console.WriteLine("");
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            ClearCurrentConsoleLine();
             Console.WriteLine("");
 
             int escapist = 0;
